@@ -23,4 +23,6 @@ The information about my database schema are hidden. However, if you want to run
 BookId (PK) is INT, bookTitle is VARCHAR(200), bookDescription is LONGTEXT, and bookCover is VARCHAR(45)
 
 </br>
-To run this website, you will need to go to both the frontend and backend folders and run the command "npm i" to install the node modules. After which, you just need to run "npm start" on both the folders
+To run this website, you will need to go to both the frontend and backend folders and run the command "npm i" to install the node modules. After which, you just need to run "npm start" on both the folders.
+</br> 
+You will also need to install libraries such as: cors, multer, express, mysql2 for the backend. And axios, react-router-dom, bootstrap, react-bootstrap for the frontend 
