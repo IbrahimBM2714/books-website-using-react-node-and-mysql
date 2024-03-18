@@ -2,15 +2,15 @@ const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
 const multer = require("multer");
-const path = require("path");
+require("dotenv").config();
 
 const app = express();
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "IbrahimBM2714",
-  database: "books",
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
 });
 
 app.use(express.json());
@@ -82,18 +82,14 @@ app.delete("/books/:id", (req, res) => {
 
 app.put("/books/:id", upload.single("bookCover"), (req, res) => {
   const id = req.params.id;
-  const {bookTitle, bookDescription} = req.body;
+  const { bookTitle, bookDescription } = req.body;
   const bookCover = req.file ? req.file.path : null;
   const query =
     "UPDATE book SET `bookTitle` = ?, `bookDescription` = ?, `bookCover` = ? WHERE bookId = ?";
 
-  const values = [
-    bookTitle,
-    bookDescription,
-    bookCover,
-  ];
+  const values = [bookTitle, bookDescription, bookCover];
 
-  console.log(bookCover)
+  console.log(bookCover);
 
   db.query(query, [...values, id], (err, data) => {
     if (err) console.log(err);
